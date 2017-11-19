@@ -1,6 +1,6 @@
 input: in_table, containing name + children, chilren also contains name + children(if exit)
        in_path: search if in_path == name, return children when exist
-Function: depthFirstSearch and widthFirstSearch both ok
+Functions: depthFirstSearch and widthFirstSearch both ok
 
 local function depthFirstSearch(in_table, in_path)
     local my_stack = {} -- 1: stack end, n: stack top, fetch from top and append to top every time
