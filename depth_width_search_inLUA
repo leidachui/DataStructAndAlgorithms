@@ -1,0 +1,41 @@
+input: in_table, containing name + children, chilren also contains name + children(if exit)
+       in_path: search if in_path == name, return children when exist
+Function: depthFirstSearch and widthFirstSearch both ok
+
+local function depthFirstSearch(in_table, in_path)
+    local my_stack = {} -- 1: stack end, n: stack top, fetch from top and append to top every time
+    table.insert(my_stack, in_table)
+    
+    while(0 ~= table.getn(my_stack))
+    do
+        local table_tmp = table.remove(my_stack)
+        if table_tmp["name"] == in_path then
+            return table_tmp
+        elseif "table" == type(table_tmp["children"]) then
+            for key, value in pairs(table_tmp["children"])
+            do
+                table.insert(my_stack, value)
+            end
+        end
+    end
+    return nil
+end
+
+local function widthFirstSearch(in_table, in_path)
+    local my_queue = {} -- 1: queue head, n: queue tail, fetch from head and append to tail every time
+    
+    table.insert(my_queue, in_table)
+    while(0 ~= table.getn(my_queue))
+    do
+        local table_tmp = table.remove(my_queue, 1)
+        if table_tmp["name"] == in_path then
+            return table_tmp
+        elseif "table" == type(table_tmp["children"]) then
+            for key, value in pairs(table_tmp["children"])
+            do
+                table.insert(my_queue, value)
+            end
+        end
+    end
+    return nil
+end
